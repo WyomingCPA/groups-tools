@@ -13,7 +13,9 @@ Vue.config.performance = true
 
 axios.defaults.withCredentials = true
 Vue.config.productionTip = false
-axios.defaults.baseURL = 'http://localhost/groups-tools/public'
+//axios.defaults.baseURL = 'http://localhost/groups-tools/public'
+axios.defaults.baseURL = 'http://gtb1.ani24.fun/';
+
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 store.dispatch('me').then(() => {
