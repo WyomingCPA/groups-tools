@@ -15,7 +15,7 @@ class CreateSubscribeTable extends Migration
     {
         Schema::create('subscribe', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('group_id');
+            $table->unsignedBigInteger('group_id');
             $table->foreign('group_id')->references('id')->on('groups');
             $table->integer('count_subscriber');
             $table->timestamps();
