@@ -18,7 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'group', 'middleware' => 'auth:sanctum'], function () {
+Route::group(['prefix' => 'group',], function () {
     Route::post('/store', 'GroupController@store');
     Route::post('/set-subscriber', 'GroupController@setSubscriber');
     Route::get('/', 'GroupController@index');
