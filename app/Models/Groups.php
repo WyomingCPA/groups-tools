@@ -26,8 +26,8 @@ class Groups extends Model
     //Список участников на разный промежуток времени
     public function getDifferencePointAttribute()
     {
-        $last_count = Subscribe::where('group_id', '=', $this->id)->orderBy('created_at', 'desc')->skip(0)->take(2)->get()->first()->count_subscriber;
-        $previous_count = Subscribe::where('group_id', '=', $this->id)->orderBy('created_at', 'desc')->skip(1)->take(2)->get()->first()->count_subscriber;
+        $last_count = Subscribe::where('group_id', '=', $this->id)->orderBy('created_at', 'desc')->skip(0)->take(2)->get()->first()->count_subscriber ?? 0;
+        $previous_count = Subscribe::where('group_id', '=', $this->id)->orderBy('created_at', 'desc')->skip(1)->take(2)->get()->first()->count_subscriber ?? 0;
         $count = $last_count - $previous_count;
         return $count;
     }   
