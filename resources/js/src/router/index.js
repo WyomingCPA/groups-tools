@@ -11,6 +11,7 @@ Vue.use(VueAxios, axios);
 
 let router = new Router({
   mode: 'history',
+  base: '/', 
   linkActiveClass: 'active',
   scrollBehavior: () => ({ y: 0 }),
   routes: configRoutes()
@@ -64,7 +65,7 @@ function configRoutes() {
   return [
     {
       path: '/',
-      redirect: '/dashboard',
+
       component: layout,
       children: [
         {
