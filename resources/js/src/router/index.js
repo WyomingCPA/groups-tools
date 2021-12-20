@@ -73,7 +73,7 @@ function configRoutes() {
           name: 'dashboard',
           component: () => import('@/pages/dashboard'),
           meta: {
-          //  authRequired: true
+            authRequired: true
           }
         }
       ]
@@ -87,7 +87,7 @@ function configRoutes() {
           name: 'group-create',
           component: () => import('@/pages/groups/create'),
           meta: {
-          //  authRequired: true
+            authRequired: true
           }
         },
         {
@@ -95,7 +95,7 @@ function configRoutes() {
           name: 'group-all',
           component: () => import('@/pages/groups/index'),
           meta: {
-          //  authRequired: true
+            authRequired: true
           }
         },
       ]
