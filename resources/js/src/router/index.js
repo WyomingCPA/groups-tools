@@ -59,7 +59,7 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-
+//
 export default router
 function configRoutes() {
   return [
