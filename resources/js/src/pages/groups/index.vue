@@ -25,6 +25,21 @@
                 >
                   Задать подписчиков
                 </b-button>
+                <b-button
+                  size="sm"
+                  @click="deleteGroup(row.item, row.index, $event.target)"
+                  class="mr-1"
+                >
+                  Удалить группу
+                </b-button>
+              </template>
+              <!-- could also be a footer field slot instead -->
+              <template slot="bottom-row">
+                <td>Всего</td>
+                <td></td>
+                <!-- this is a computed prop that adds up all the expenses in the visible rows -->
+                <td>{{ totalSubcribbers }}</td>
+                <td></td>
               </template>
             </b-table>
             <!-- Info modal -->
@@ -110,6 +125,29 @@ export default {
       this.idGroup = item.id;
       this.$root.$emit("bv::show::modal", this.infoModal.id, button);
     },
+    deleteGroup(item, index, button) {
+      this.idGroup = item.id;
+      let self = this;
+      axios.get("/sanctum/csrf-cookie").then((response) => {
+        axios
+          .post("/api/group/delete", {
+            id_group: self.idGroup,
+          })
+          .then((response) => {
+            if (response.status) {
+              console.log("Вызвали алерт");
+              this.getGroups();
+            } else {
+              console.log("Не работает");
+              console.log(response.status);
+            }
+          })
+          .catch(function (error) {
+            console.log(response);
+            console.error(error);
+          });
+      });
+    },
     getGroups() {
       let self = this;
       axios
@@ -153,6 +191,17 @@ export default {
   },
   mounted: function () {
     this.getGroups();
+  },
+  computed: {
+    totalSubcribbers() {
+      let count = 0;
+      this.items.forEach((value, index) => {
+        if (value.subscribers != null) {
+          count += value.subscribers["count_subscriber"];
+        }
+      });
+      return count;
+    },
   },
 };
 </script>

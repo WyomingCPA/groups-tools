@@ -16,6 +16,13 @@ Vue.config.productionTip = false
 //axios.defaults.baseURL = 'http://localhost/groups-tools/public'
 axios.defaults.baseURL = 'http://gtb1.ani24.fun/';
 
+/* Вариант с условиями для публикаций 
+if ( process.env.NODE_ENV == 'production' ) {
+  axios.defaults.baseURL = 'http://gtb1.ani24.fun/';
+} else {
+  axios.defaults.baseURL = 'http://localhost/groups-tools/public'
+}
+*/
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 store.dispatch('me').then(() => {

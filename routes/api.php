@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'group', 'middleware' => 'auth:sanctum'], function () {
     Route::post('/store', 'GroupController@store');
     Route::post('/set-subscriber', 'GroupController@setSubscriber');
+    Route::post('/delete', 'GroupController@delete');
     Route::get('/', 'GroupController@index');
 });
 

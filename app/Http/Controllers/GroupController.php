@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Groups;
 use App\Models\Subscribe;
+
 class GroupController extends Controller
 {
     public function index(Request $request)
@@ -15,7 +16,7 @@ class GroupController extends Controller
             'groups' => Groups::all()->toArray(),
         ], 200);
     }
-    
+
     public function store(Request $request)
     {
         $model = Groups::create([
@@ -36,6 +37,16 @@ class GroupController extends Controller
         ]);
         //group_id
         //count_subscriber
+
+        return response([
+            'status' => true,
+        ], 200);
+    }
+
+    public function delete(Request $request)
+    {
+        $model = Groups::find($request->id_group);
+        $model->delete();
 
         return response([
             'status' => true,
